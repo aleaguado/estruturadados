@@ -4,6 +4,7 @@ package topico1_vetores;
 ////////////////////////////////////////////////////////////////
 class VetorApp
    {
+    
    public static void main(String[] args)
       {
       long[] vet;                  // referencia para vetor
