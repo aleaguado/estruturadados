@@ -15,7 +15,7 @@ class VetorApp
 //--------------------------------------------------------------
 //Rotina de inserção ....
 //--------------------------------------------------------------
-      vet[0] = 77;                 // insere 10 itens
+      vet[0] = 77;   // insere 10 itens
       vet[1] = 99;
       vet[2] = 44;
       vet[3] = 55;
@@ -25,7 +25,7 @@ class VetorApp
       vet[7] = 00;
       vet[8] = 66;
       vet[9] = 33;
-      nElems = 10;                 // insere a quantidade de itens no vetor na variavel nElems
+      nElems = 10;   // insere a quant. de itens no vetor na variavel nElems
 //--------------------------------------------------------------
 //Rotina para visualizar os itens do vetor ....
 //--------------------------------------------------------------
