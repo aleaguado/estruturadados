@@ -23,6 +23,7 @@ class VetorIntermediarioApp //Inicia a classe "usuaria" da estrutura de dados
       {
       EstruturaDeDados arr;                 // referencia
       arr = new EstruturaDeDados(100);      // cria o objeto Baixo Vetor
+      
       int nElems = 0;               // inicializa a quantidade de elementos do vetor
       int j;                        // variavel para repetição
 //--------------------------------------------------------------

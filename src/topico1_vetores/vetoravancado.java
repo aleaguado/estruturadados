@@ -5,7 +5,7 @@ package topico1_vetores;
 ////////////////////////////////////////////////////////////////
 
 class EstruturaAvancada  //Criamos aqui nossa classe EstruturaAvancada
-   {
+   { 
    private long[] a;                 // cria a referência do vetor
    private int nElems;               // nElems controla quantos elementos o vetor terá ...
    //-----------------------------------------------------------

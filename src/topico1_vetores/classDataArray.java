@@ -3,46 +3,46 @@ package topico1_vetores;
 // data items as class objects
 // to run this program: C>java ClassDataApp
 ////////////////////////////////////////////////////////////////
-class Person
+class Pessoa
    { 
    private String lastName;
    private String firstName;
    private int age;
 //--------------------------------------------------------------
-   public Person(String last, String first, int a)
+   public Pessoa(String last, String first, int a)
       {                               // comentario aqui
       lastName = last;
       firstName = first;
       age = a;
       }
 //--------------------------------------------------------------
-   public void displayPerson()
+   public void displayPessoa()
       {
       System.out.print("   Last name: " + lastName);
       System.out.print(", First name: " + firstName);
       System.out.println(", Age: " + age);
       }
 //--------------------------------------------------------------
-   public String getLast()           // comentario aqui
+   public String getSobrenome()           // comentario aqui
       { return lastName; }
    }  // end class Person
 ////////////////////////////////////////////////////////////////
-class ClassDataArray
+class EstruturaDadosOb
    {
-   private Person[] a;               // comentario aqui
+   private Pessoa[] a;               // comentario aqui
    private int nElems;               /// comentario aqui
 
-   public ClassDataArray(int max)    // comentario aqui
+   public EstruturaDadosOb(int max)    // comentario aqui
       {
-      a = new Person[max];               // comentario aqui
+      a = new Pessoa[max];               // comentario aqui
       nElems = 0;                        // comentario aqui
       }
 //--------------------------------------------------------------
-   public Person find(String searchName)
+   public Pessoa find(String searchName)
       {                              // comentario aqui
       int j;
       for(j=0; j<nElems; j++)            // comentario aqui
-         if( a[j].getLast().equals(searchName) )  // comentario aqui
+         if( a[j].getSobrenome().equals(searchName) )  // comentario aqui
             break;                       // comentario aqui
       if(j == nElems)                    // comentario aqui
          return null;                    // comentario aqui
@@ -52,7 +52,7 @@ class ClassDataArray
 //--------------------------------------------------------------                                    // put person into array
    public void insert(String last, String first, int age)
       {
-      a[nElems] = new Person(last, first, age);
+      a[nElems] = new Pessoa(last, first, age);
       nElems++;                          // comentario aqui
       }
 //--------------------------------------------------------------
@@ -60,7 +60,7 @@ class ClassDataArray
       {                              // comentario aqui
       int j;
       for(j=0; j<nElems; j++)            // comentario aqui
-         if( a[j].getLast().equals(searchName) )
+         if( a[j].getSobrenome().equals(searchName) )
             break;
       if(j==nElems)                     // comentario aqui
          return false;
@@ -76,7 +76,7 @@ class ClassDataArray
    public void displayA()            // comentario aqui
       {
       for(int j=0; j<nElems; j++)       // comentario aqui
-         a[j].displayPerson();          // comentario aqui
+         a[j].displayPessoa();// comentario aqui
       }
 //--------------------------------------------------------------
    }  // end class ClassDataArray
@@ -86,8 +86,8 @@ class ClassDataApp
    public static void main(String[] args)
       {
       int maxSize = 100;             // comentario aqui
-      ClassDataArray arr;            // comentario aqui
-      arr = new ClassDataArray(maxSize);  // comentario aqui
+      EstruturaDadosOb arr;            // comentario aqui
+      arr = new EstruturaDadosOb(maxSize);  // comentario aqui
                                      // comentario aqui
       arr.insert("Evans", "Patty", 24);
       arr.insert("Smith", "Lorraine", 37);

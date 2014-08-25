@@ -35,12 +35,14 @@ class VetorApp
 //--------------------------------------------------------------
 //Rotina de busca ....
 //--------------------------------------------------------------
-      chaveBusca = 66;              // seta a busca para achar o valor 66
+         
+      
+      chaveBusca = 89;              // seta a busca para achar o valor 66
       for(j=0; j<nElems; j++)          // faz o for varrer o vetor
          if(vet[j] == chaveBusca)       // compara ... encontrou?
             break;                     // ...se encontrou termina o for antes de finalizar..
-      if(j == nElems)                  // chegou ao final do vetor?
-         System.out.println("Não localizei o item " + chaveBusca); // sim
+      if(j == nElems)  {                // chegou ao final do vetor?
+         System.out.println("Não localizei o item " + chaveBusca); }// sim
       else
          System.out.println("Encontrei o item " + chaveBusca);      // não
 //--------------------------------------------------------------
