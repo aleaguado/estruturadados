@@ -43,8 +43,8 @@ public class pilha {
 //--------------------------------------------------------------
    public boolean estaVazio()    // metodo para verificar se a pilha esta vazia
       {
-      return (top == -1);       // retornará verdadeiro se top for igual a -1
-      }
+       return (top == -1);       // retornará verdadeiro se top for igual a -1
+        }
 //--------------------------------------------------------------
    public boolean estaCheio()     // metodo para verificar se a pilha esta cheia
       {
