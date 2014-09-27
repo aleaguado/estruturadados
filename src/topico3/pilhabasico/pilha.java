@@ -6,50 +6,42 @@
 
 package topico3.pilhabasico;
 
+
 /**
  *
  * @author aleaguado
  */
-public class pilha {
-   private int maxSize;        // tamanho do array
-   private long[] pilhaArray;   //vetor??? Isso mesmo ...usamos ele para implementar pilha
-   private int top;            // topo da pilha
+class pilha
+   {
+   private int maxSize;
+   private int[] pilhaArray;
+   private int top;
 //--------------------------------------------------------------
-   public pilha(int s)         // construtor
+   public pilha(int s)       // constructor
       {
-      maxSize = s;             // colocamos aqui o tamanho do vetor que servirá de pilha
-      pilhaArray = new long[maxSize];  // criamos aqui o vetor que servirá de pilha
-      top = -1;                // top vale -1 porque ainda não tem nenhum item!
+      maxSize = s;
+      pilhaArray = new int[maxSize];
+      top = -1;
       }
 //--------------------------------------------------------------
-   public void inserir(long j)    // insere um item no topo da pilha
+   public void inserir(int j)  // insere item
       {
-      pilhaArray[++top] = j;     // increment a variavel top e naquela posição da pilha já insere o valor
-      //OBS: O sinal de ++ do lado esquerdo faz ele incrementar e depois retornar o valor de top
-   }
-//--------------------------------------------------------------
-   public long remove()           // remove o item no topo da pilha
-      {
-      return pilhaArray[top--];  // acessa o item e decrementa top
-      //OBS: O sinal de -- do lado direito faz ele retornar o valor de top e depois decrementar
-                                    //OBS: repare que na realidade não se remove nada, simplesmente, gerenciamos top 
-                                    // para não ver mais esse item!!!
+      pilhaArray[++top] = j;
       }
 //--------------------------------------------------------------
-   public long pegaitem()          // pega item
+   public int remove()         // remove item
       {
-      return pilhaArray[top];       //retornará o item que esta no topo da pilha
+      return pilhaArray[top--];
       }
 //--------------------------------------------------------------
-   public boolean estaVazio()    // metodo para verificar se a pilha esta vazia
+   public int pegaitem()        // pega o item do topo
       {
-       return (top == -1);       // retornará verdadeiro se top for igual a -1
-        }
-//--------------------------------------------------------------
-   public boolean estaCheio()     // metodo para verificar se a pilha esta cheia
-      {
-      return (top == maxSize-1);    //retornará verdadeiro se top for igual ao tamanho maximo -1
+      return pilhaArray[top];
       }
 //--------------------------------------------------------------
-    
-}
+   public boolean estaVazio()    // retorna verdadeiro se estiver vazio
+      {
+      return (top == -1);
+      }
+//--------------------------------------------------------------
+   }  // fim da classe
