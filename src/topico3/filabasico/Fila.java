@@ -26,7 +26,7 @@ public class Fila    {
       nItems = 0;
       }
 //--------------------------------------------------------------
-   //OBS: EM UMA FILA CIRCULAR, NÂO NECESSARIAMENTE O PRIMEIRO ITEM, VAI SER O PRIMEIRO
+   //OBS: EM UMA FILA CIRCULAR, NÂO NECESSARIAMENTE O PRIMEIRO ITEM DO VETOR, VAI SER O PRIMEIRO
    // ITEM DO VETOR!!!!
    
    
