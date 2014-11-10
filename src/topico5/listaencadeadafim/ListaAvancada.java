@@ -63,30 +63,30 @@ public class ListaAvancada {
             No newNo = new No(n, p, id);
             
             if( estaVazio() )    {            // se a lista estiver vazia ...
-                primeiro = newNo;
+                this.insereNaFrente(n, p, id);
                 return "Inserido Primeiro Item";
-      }
+            }
             
             //A ordenação será Primeiro > menor ... Último > Maior
             // Entao se for para inserir em uma ponta...
-            if (id < primeiro.getIdade() ) {
+            if (id <= primeiro.getIdade() ) {
                 this.insereNaFrente(n, p, id);
                 return "Inserido com sucesso no começo da lista!";
             } 
             
-             if ((id > ultimo.getIdade() ) || (ultimo == null)){
+             if (id >= ultimo.getIdade() ){
                 this.insertNoFim(n, p, id);
                 return "Inserido com sucesso no final da lista";
             }
 
-            while(bolaDaVez != null && id > bolaDaVez.getIdade())
+            while(id > bolaDaVez.getIdade())
                {                            
                bolaDaVez = bolaDaVez.getProximo();
-            }
-                newNo.setAnterior(bolaDaVez);
-                newNo.setProximo(bolaDaVez.getAnterior());
-                bolaDaVez.setAnterior(newNo);
+               }
                 bolaDaVez.getAnterior().setProximo(newNo);
+                newNo.setAnterior(bolaDaVez.getAnterior());
+                newNo.setProximo(bolaDaVez);              
+                bolaDaVez.setAnterior(newNo);                
                 return "Inserido entre itens com sucesso";
    }
 

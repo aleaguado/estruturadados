@@ -20,21 +20,22 @@ class ListaDeNosApp
       ListaAvancada theList = new ListaAvancada();  // criamos uma nova lista
       Scanner ent = new Scanner(System.in);
 
-      theList.insereNaFrente("João", "Paula Fernandes", 15);
-      theList.insereNaFrente("Ze", "Isis", 31);
-      theList.insereNaFrente("João", "Paula Fernandes", 15);      // inserimos quatro itens nela
-      theList.insertNoFim("José", "Bruna Marq.", 19);
-      theList.insertNoFim("Manoel", "Andressa", 18);
-      theList.insertNoFim("Rovanildo", "Isis", 20);
+      theList.InsereOrdenado("João", "Paula Fernandes", 15);
+      theList.InsereOrdenado("Ze", "Isis", 31);
+      theList.InsereOrdenado("João", "Paula Fernandes", 15);      // inserimos quatro itens nela
+      theList.InsereOrdenado("José", "Bruna Marq.", 19);
+      theList.InsereOrdenado("Manoel", "Andressa", 18);
+      theList.InsereOrdenado("Rovanildo", "Isis", 20);
 
           //Mostra de Frente para Tarde
+          System.out.println("Vamos ver a lista de Frente para Trás?");
           System.out.println(theList.ListaDeFrentePraTras());              // mostramos a lista
-         
+
+           System.out.println("Vamos ver a lista de tras para frente?");
            //Mostra de Traz para Frente
           System.out.println(theList.ListaDeTrazPraFrente());              // mostramos a lista
           
-          
-          
+
           System.out.println("Vamos fazer uma busca ... vamos buscar o Manuel ...");
           System.out.println(theList.buscaEspecifico("Manoel"));
           
