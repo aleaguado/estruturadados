@@ -68,97 +68,102 @@ public class Arvore {
     }
     
     public boolean remover(int ordem) {
-      No corrente = raiz;
-      No parent = raiz;
+      No corrente = raiz;           // corrente é a referência de nó que ficará sobre o nó da vez
+      No pai = raiz;             // é necessário uma referência sobre o pai também ...
       boolean filhoEsquerda = true;
 
-      while(corrente.getOrdem() != ordem)        // enquanto não encontramos
+      while(corrente.getOrdem() != ordem)        // vamos buscar o que vamos remover!
          {
-         parent = corrente;
-         if(ordem < corrente.getOrdem())         // go left?
+         pai = corrente;                      //o nó pai passa a ser o nó corrente ... 
+         if(ordem < corrente.getOrdem())         // vamos para o lado esquerdo? ... 
             {
-            filhoEsquerda = true;
+            filhoEsquerda = true;                // marcamos que estamos no lado esquerdo
             corrente = corrente.getFilhoEsquerdo();
             }
-         else                            // or go right?
+         else                            //vamos para o lado direito ... 
             {
-            filhoEsquerda = false;
+            filhoEsquerda = false;      // marcamos que estamos no lado direito
             corrente = corrente.getFilhoDireito();
             }
-         if(corrente == null)             // end of the line,
-            return false;                // didn't find it
-         }  // end while
-      // found node to delete
+         if(corrente == null)             // se o nó corrente for null é pq é o final ...
+            return false;                // ... e não encontramos!!!
+         }  // terminamos o while
+      
+      // IMPORTANTE: passamos por aqui se terminamos o while e aqui estaremos com a referencia
+      // corrente sob o nó que vamos remover e a referência pai sobre o nó pai dele ...
 
-      // if no children, simply delete it
+      //CASO 1: O nó a ser removido não tem filhos ... é nó FOLHA ...
+      // se o nó não tiver filhos, é só colocar ele como null ..
       if(corrente.getFilhoEsquerdo()==null &&
                                    corrente.getFilhoDireito()==null)
          {
-         if(corrente == raiz)             // if raiz,
-            raiz = null;                 // tree is empty
-         else if(filhoEsquerda)
-            parent.setFilhoEsquerdo(null);     // disconnect
-         else                            // from parent
-            parent.setFilhoDireito(null);
+         if(corrente == raiz)             // se for o nó raiz ...
+            raiz = null;                 // deixamos nossa raiz NULL ...
+         else if(filhoEsquerda)          // se ele for um filho a esquerda ....
+            pai.setFilhoEsquerdo(null);     // disconectados o filho a esquerda do pai dele ...
+         else                            // senão ...
+            pai.setFilhoDireito(null);      // disconectamos o filho a direito do pai dele ...
          }
 
-      // if no right child, replace with left subtree
+      
+      // CASO 2: Se não existe filho a direita!!!
+      // nesse caso substituimos pela arvore da esquerda
       else if(corrente.getFilhoDireito()==null)
-         if(corrente == raiz)
-            raiz = corrente.getFilhoEsquerdo();
-         else if(filhoEsquerda)
-            parent.setFilhoEsquerdo(corrente.getFilhoEsquerdo());
-         else
-            parent.setFilhoDireito(corrente.getFilhoEsquerdo());
+         if(corrente == raiz)       //se for nó raiz ...
+            raiz = corrente.getFilhoEsquerdo(); // a raiz passa a ser o filho da esquerda ...
+         else if(filhoEsquerda) //se ele for um filho a esquerda ...
+            pai.setFilhoEsquerdo(corrente.getFilhoEsquerdo());  // disconectamos o pai do filho a esquerda
+         else           // senão
+            pai.setFilhoDireito(corrente.getFilhoEsquerdo()); //disconectamos o pai do filho a direita
 
-      // if no left child, replace with right subtree
+      //CASO 3: Se não existe filho a esquerda!!!
+      // nesse caso substituimos pela arvore a direita
       else if(corrente.getFilhoEsquerdo()==null)
          if(corrente == raiz)
             raiz = corrente.getFilhoDireito();
          else if(filhoEsquerda)
-            parent.setFilhoEsquerdo(corrente.getFilhoDireito());
+            pai.setFilhoEsquerdo(corrente.getFilhoDireito());
          else
-            parent.setFilhoDireito(corrente.getFilhoDireito());
+            pai.setFilhoDireito(corrente.getFilhoDireito());
 
-      else  // two children, so replace with inorder successor
+      else  // CASO 4: Se existem os dois filhos ...
          {
-         // get successor of node to delete (corrente)
+         // Substituimos pelo Sucessor ... 
          No successor = getSuccessor(corrente);
 
-         // connect parent of corrente to successor instead
-         if(corrente == raiz)
-            raiz = successor;
-         else if(filhoEsquerda)
-            parent.setFilhoEsquerdo(successor);
+         // conectando o pai aos sucessores ...
+         if(corrente == raiz)   // se for a raiz ....
+            raiz = successor;   // a raiz passa a ser o sucessor ...
+         else if(filhoEsquerda) // se o removido for a esquerda ...
+            pai.setFilhoEsquerdo(successor);    // conectamos o filho do pai a esquerda ...
          else
-            parent.setFilhoDireito(successor);
+            pai.setFilhoDireito(successor);     // senão conectamos o filho a direita do pai ...
 
-         // connect successor to corrente's left child
+         // connectamos o sucessor aos seus filhos ... 
          successor.setFilhoEsquerdo(corrente.getFilhoEsquerdo());
-         }  // end else two children
-      // (successor cannot have a left child)
-      return true;                                // success
-   
+         }  // final do else de ter dois filhos ...
+      return true;                                // retornamos que deu certo 
     }
 
       private No getSuccessor(No delNode)
       {
-      No successorParent = delNode;
-      No successor = delNode;
-      No current = delNode.getFilhoDireito();   // go to right child
-      while(current != null)               // until no more
-         {                                 // left children,
-         successorParent = successor;
-         successor = current;
-         current = current.getFilhoEsquerdo();      // go to left child
+      No successorPai = delNode; // o nó sucessorPai começa sendo o nó que queremos deletar ...
+      No successor = delNode;   // o nó sucessor também ...
+      No corrente = delNode.getFilhoDireito();   // vamos para a direita do nó que queremos deletar
+      while(corrente != null)               // enquanto não chegarmos na folha 
+         {                                 // mais a esquerda do lado direito
+         successorPai = successor;          // o pai passa a ser o sucessor
+         successor = corrente;              // o sucessor passa a ser o corrente
+         corrente = corrente.getFilhoEsquerdo();      // o corrente para a ser o filho a esquerda
          }
-                                           // if successor not
-      if(successor != delNode.getFilhoDireito())  // right child,
-         {                                 // make connections
-         successorParent.setFilhoEsquerdo(successor.getFilhoDireito());
-         successor.setFilhoDireito(delNode.getFilhoDireito());
-         }
-      return successor;
+         //chegamos aqui quando o corrente aponta prabaixo da folha ...
+      
+      if(successor != delNode.getFilhoDireito())  // se o sucessor não é o filho a direita
+         {                                 // do nó deletado vamos ...
+         successorPai.setFilhoEsquerdo(successor.getFilhoDireito()); // fazer o filho a esquerda do pai
+         successor.setFilhoDireito(delNode.getFilhoDireito());       // do sucessor apontar p/ a arvore
+         }                                                          // a direita do sucessor ...
+      return successor;         // e retornamos o sucessor ...
       }
     
     
